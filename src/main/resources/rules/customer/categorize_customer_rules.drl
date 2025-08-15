@@ -1,0 +1,28 @@
+package rules.customer
+
+import com.example.model.OrderRequest
+import com.example.enums.CustomerCategory
+
+dialect "mvel"
+
+rule "Categorize as GENERAL"
+    when
+        $o : OrderRequest()
+    then
+        $o.setCustomerCategory(CustomerCategory.GENERAL);
+end
+
+rule "Categorize as KIDS"
+    when
+        $o : OrderRequest(age < 20)
+    then
+        $o.setCustomerCategory(CustomerCategory.KIDS);
+end
+
+rule "Categorize as SENIOR_CITIZEN"
+    when
+        $o : OrderRequest(age > 50)
+    then
+        $o.setCustomerCategory(CustomerCategory.SENIOR_CITIZEN);
+end
+
