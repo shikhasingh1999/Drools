@@ -4,6 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum CustomerCategory {
-    GENERAL, KIDS, SENIOR_CITIZEN, SUSPENDED
-
+    BRONZE,
+    SILVER,
+    GOLD,
+    PLATINUM
 }

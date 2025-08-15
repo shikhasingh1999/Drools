@@ -1,28 +1,38 @@
 package rules.customer
 
-import com.example.model.OrderRequest
+import com.example.model.Customer
 import com.example.enums.CustomerCategory
 
 dialect "mvel"
 
-rule "Categorize as GENERAL"
+rule "Bronze Category"
     when
-        $o : OrderRequest()
+        $c : Customer( totalSpent < 5000 )
     then
-        $o.setCustomerCategory(CustomerCategory.GENERAL);
+        $c.setCategory(CustomerCategory.BRONZE);
+        System.out.println("[RULE] Assigned BRONZE category");
 end
 
-rule "Categorize as KIDS"
+rule "Silver Category"
     when
-        $o : OrderRequest(age < 20)
+        $c : Customer( totalSpent >= 5000 && totalSpent < 15000 )
     then
-        $o.setCustomerCategory(CustomerCategory.KIDS);
+        $c.setCategory(CustomerCategory.SILVER);
+        System.out.println("[RULE] Assigned SILVER category");
 end
 
-rule "Categorize as SENIOR_CITIZEN"
+rule "Gold Category"
     when
-        $o : OrderRequest(age > 50)
+        $c : Customer( totalSpent >= 15000 && totalSpent < 30000 )
     then
-        $o.setCustomerCategory(CustomerCategory.SENIOR_CITIZEN);
+        $c.setCategory(CustomerCategory.GOLD);
+        System.out.println("[RULE] Assigned GOLD category");
 end
 
+rule "Platinum Category"
+    when
+        $c : Customer( totalSpent >= 30000 )
+    then
+        $c.setCategory(CustomerCategory.PLATINUM);
+        System.out.println("[RULE] Assigned PLATINUM category");
+end

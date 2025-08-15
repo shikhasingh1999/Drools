@@ -1,0 +1,28 @@
+package rules.customer
+
+import com.example.model.Customer
+import com.example.enums.CustomerType
+
+rule "Classify New Customer"
+    when
+        $c : Customer( ordersCount == 0 )
+    then
+        $c.setType(CustomerType.NEW);
+        System.out.println("[RULE] Classified as NEW customer");
+end
+
+rule "Classify Regular Customer"
+    when
+        $c : Customer( ordersCount > 0 && ordersCount < 10 )
+    then
+        $c.setType(CustomerType.REGULAR);
+        System.out.println("[RULE] Classified as REGULAR customer");
+end
+
+rule "Classify VIP Customer"
+    when
+        $c : Customer( ordersCount >= 10 )
+    then
+        $c.setType(CustomerType.VIP);
+        System.out.println("[RULE] Classified as VIP customer");
+end

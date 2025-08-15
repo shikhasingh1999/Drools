@@ -4,5 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum CustomerType {
-    NEW, LOYAL, DISSATISFIED
+    REGULAR,
+    PREMIUM,
+    VIP,
+    NEW
 }

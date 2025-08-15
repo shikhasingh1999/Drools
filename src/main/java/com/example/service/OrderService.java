@@ -1,8 +1,7 @@
 package com.example.service;
 
-import com.example.model.OrderRequest;
-import com.example.model.OrderResponse;
+import com.example.model.Customer;
 
 public interface OrderService {
-    OrderRequest getOrderDiscount(OrderRequest orderRequest);
+    Customer getOrderDiscount(Customer customer);
 }

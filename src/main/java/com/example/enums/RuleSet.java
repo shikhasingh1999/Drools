@@ -9,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public enum RuleSet {
 
-    CUSTOMER_CATEGORIZATION("CustomerRulesSession"),
+    CUSTOMER_CATEGORIZATION("CustomerCategorizationSession"),
+    CUSTOMER_TYPE("CustomerTypeSession"),
     DISCOUNT_CALCULATION("DiscountRulesSession");
 
     private final String folder;
