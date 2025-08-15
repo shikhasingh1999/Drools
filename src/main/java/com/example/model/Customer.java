@@ -18,7 +18,7 @@ public class Customer {
     // set by Drools
     private CustomerType type;
     private CustomerCategory category;
-    private double discountPercentage;
+    private Double discountPercentage;
 
 
 

@@ -1,0 +1,142 @@
+package rules.discount
+
+import com.example.model.Customer
+import com.example.enums.CustomerCategory
+import com.example.enums.CardType
+import com.example.enums.CustomerType
+
+dialect "mvel"
+
+// -------------------- CustomerType based extra discounts --------------------
+
+// NEW customers get +1% extra
+rule "NEW customer extra discount"
+    when
+        $c: Customer(type == CustomerType.NEW)
+    then
+        double current = $c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0;
+        $c.setDiscountPercentage(current + 1);
+        System.out.println("[RULE] NEW customer +1% discount");
+end
+
+// PREMIUM customers get +2% extra
+rule "PREMIUM customer extra discount"
+    when
+        $c: Customer(type == CustomerType.PREMIUM)
+    then
+        double current = $c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0;
+        $c.setDiscountPercentage(current + 2);
+        System.out.println("[RULE] PREMIUM customer +2% discount");
+end
+
+// VIP customers get +3% extra
+rule "VIP customer extra discount"
+    when
+        $c: Customer(type == CustomerType.VIP)
+    then
+        double current = $c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0;
+        $c.setDiscountPercentage(current + 3);
+        System.out.println("[RULE] VIP customer +3% discount");
+end
+
+// -------------------- Category + CardType discounts --------------------
+
+// Bronze category
+rule "Bronze with VISA"
+    when
+        $c: Customer(category == CustomerCategory.BRONZE, cardType == CardType.VISA)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 2);
+        System.out.println("[RULE] Bronze + VISA 2%");
+end
+
+rule "Bronze with MASTERCARD"
+    when
+        $c: Customer(category == CustomerCategory.BRONZE, cardType == CardType.MASTERCARD)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 3);
+        System.out.println("[RULE] Bronze + MASTERCARD 3%");
+end
+
+rule "Bronze with RUPAY"
+    when
+        $c: Customer(category == CustomerCategory.BRONZE, cardType == CardType.RUPAY)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 1);
+        System.out.println("[RULE] Bronze + RUPAY 1%");
+end
+
+// Silver category
+rule "Silver with VISA"
+    when
+        $c: Customer(category == CustomerCategory.SILVER, cardType == CardType.VISA)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 5);
+        System.out.println("[RULE] Silver + VISA 5%");
+end
+
+rule "Silver with MASTERCARD"
+    when
+        $c: Customer(category == CustomerCategory.SILVER, cardType == CardType.MASTERCARD)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 6);
+        System.out.println("[RULE] Silver + MASTERCARD 6%");
+end
+
+rule "Silver with RUPAY"
+    when
+        $c: Customer(category == CustomerCategory.SILVER, cardType == CardType.RUPAY)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 4);
+        System.out.println("[RULE] Silver + RUPAY 4%");
+end
+
+// Gold category
+rule "Gold with VISA"
+    when
+        $c: Customer(category == CustomerCategory.GOLD, cardType == CardType.VISA)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 10);
+        System.out.println("[RULE] Gold + VISA 10%");
+end
+
+rule "Gold with MASTERCARD"
+    when
+        $c: Customer(category == CustomerCategory.GOLD, cardType == CardType.MASTERCARD)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 12);
+        System.out.println("[RULE] Gold + MASTERCARD 12%");
+end
+
+rule "Gold with RUPAY"
+    when
+        $c: Customer(category == CustomerCategory.GOLD, cardType == CardType.RUPAY)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 8);
+        System.out.println("[RULE] Gold + RUPAY 8%");
+end
+
+// Platinum category
+rule "Platinum with VISA"
+    when
+        $c: Customer(category == CustomerCategory.PLATINUM, cardType == CardType.VISA)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 15);
+        System.out.println("[RULE] Platinum + VISA 15%");
+end
+
+rule "Platinum with MASTERCARD"
+    when
+        $c: Customer(category == CustomerCategory.PLATINUM, cardType == CardType.MASTERCARD)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 18);
+        System.out.println("[RULE] Platinum + MASTERCARD 18%");
+end
+
+rule "Platinum with RUPAY"
+    when
+        $c: Customer(category == CustomerCategory.PLATINUM, cardType == CardType.RUPAY)
+    then
+        $c.setDiscountPercentage(($c.getDiscountPercentage() != null ? $c.getDiscountPercentage() : 0.0) + 12);
+        System.out.println("[RULE] Platinum + RUPAY 12%");
+end
