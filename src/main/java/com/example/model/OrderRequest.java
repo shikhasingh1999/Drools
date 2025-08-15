@@ -1,8 +1,6 @@
 package com.example.model;
 
 import com.example.enums.CardType;
-import com.example.enums.CustomerCategory;
-import com.example.enums.CustomerType;
 import lombok.Data;
 
 import java.math.BigDecimal;

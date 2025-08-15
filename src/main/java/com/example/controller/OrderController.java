@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import com.example.model.Customer;
 import com.example.model.Order;
 import com.example.model.OrderRequest;
 import com.example.model.OrderResponse;
