@@ -14,6 +14,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Customer getOrderDiscount(Customer customer) {
+        ruleEngineService.executeRules(RuleSet.CUSTOMER_TYPE, customer);
         ruleEngineService.executeRules(RuleSet.CUSTOMER_CATEGORIZATION, customer);
         ruleEngineService.executeRules(RuleSet.DISCOUNT_CALCULATION, customer);
         return customer;

@@ -1,4 +1,4 @@
-package rules.customer
+package rules.customer.type
 
 import com.example.model.Customer
 import com.example.enums.CustomerType

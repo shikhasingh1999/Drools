@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <kmodule xmlns="http://www.drools.org/xsd/kmodule">
-    <kbase name="customerRulesKB" packages="rules.customer">
-        <ksession name="CustomerRulesSession"/>
+    <kbase name="customerCategorizationKB" packages="rules.customer.category">
+        <ksession name="CustomerCategorizationSession"/>
+    </kbase>
+    <kbase name="customerTypeKB" packages="rules.customer.type">
+        <ksession name="CustomerTypeSession"/>
     </kbase>
     <kbase name="DiscountRulesKB" packages="rules.discount">
         <ksession name="DiscountRulesSession"/>
